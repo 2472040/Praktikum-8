@@ -1,20 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Suit</title>
+  <style>
+    body {
+      background-color: tan;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .result {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .player, .computer {
+      margin: 0 30px;
+    }
+    .label {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .red { color: red; }
+    .blue { color: blue; }
+    .vs {
+      font-size: 20px;
+      margin: 0 20px;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: firebrick;
+    }
+    img {
+      width: 120px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    /*<img src="/img/1.jpg" alt="satu">
-    <img src="/img/2.jpg" alt="dua">
-    <img src="/img/3.jpg" alt="tiga">
-    <img src="/img/4.jpg" alt="empat">
-    <img src="/img/5.jpg" alt="lima">
-    <img src="/img/6.jpg" alt="enam">
-    <img src="/img/7.jpg" alt="tujuh">
-    <img src="/img/8.jpg" alt="delapan">
-    <img src="/img/9.jpg" alt="sembilan">*/
+  <h2>Selamat Bermain!</h2>
+
+  <div class="result">
+    <div class="player">
+      <div class="label red">PLAYER</div>
+      <img id="playerImg" src="" alt="Angka Player">
+    </div>
+    <div class="vs">VS</div>
+    <div class="computer">
+      <div class="label blue">COMPUTER</div>
+      <img id="computerImg" src="" alt="Angka Komputer">
+    </div>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <script>
+    function startGame() {
+      const input = prompt("Selamat Bermain!!!!\nSilahkan Masukkan Angka Pilihan Anda:\n(Angka 1 - 9)");
+      const playerNum = parseInt(input);
+
+      if (isNaN(playerNum) || playerNum < 1 || playerNum > 9) {
+        alert("Angka harus dari 1 - 9");
+        return;
+      }
+
+      const computerNum = Math.floor(Math.random() * 9) + 1;
+
+      document.getElementById("playerImg").src = `img/${playerNum}.jpg`;
+      document.getElementById("computerImg").src = `img/${computerNum}.jpg`;
+
+      let result = "";
+      if (playerNum > computerNum) {
+        result = "PLAYER WIN";
+      } else if (playerNum < computerNum) {
+        result = "PLAYER LOSE";
+      } else {
+        result = "DRAW";
+      }
+
+      document.getElementById("status").innerText = result;
+    }
+
+    window.onload = startGame;
+  </script>
 </body>
 </html>
